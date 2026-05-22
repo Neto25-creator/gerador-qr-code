@@ -5,7 +5,6 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.json());
 
-// Rota para gerar QR Code
 app.post("/gerar", async (req, res) => {
   const { link } = req.body;
   try {
@@ -14,6 +13,9 @@ app.post("/gerar", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: "Erro ao gerar QR Code" });
   }
+});
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.listen(3000, () =>
